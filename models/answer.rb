@@ -12,17 +12,7 @@ class Stackoverflow::Answer < Stackoverflow::Model
     a
   end
   
-  def self.all
-    res = so.questions["questions"].map do |question|
-      q = Stackoverflow::Question.new 
-      question.each{ |data| q.send("#{data[0]}=", data[1])}
-      q
-    end
-  end
-  
-  def self.find_by_question_id(question_id)
-    #todo
-  end
+  # ACCESSORS
   
   def user
     Stackoverflow::User.find(owner_user_id)
@@ -32,11 +22,13 @@ class Stackoverflow::Answer < Stackoverflow::Model
     Stackoverflow::Answer.find(answer_id)
   end
   
-  def id
-    answer_id
-  end
-  
   def question
     Stackoverflow::Question.find(question_id)
   end
+  
+  # ALIASES
+  def id
+    answer_id
+  end
+
 end

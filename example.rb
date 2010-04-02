@@ -17,7 +17,7 @@ answer_id =2568774
 user = Stackoverflow::User.find(user_id)
 # puts Stackoverflow::User.find(user_id).to_yaml
 # puts Stackoverflow::User.all.to_yaml
-# puts marcgg.questions.to_yaml
+ puts user.questions.to_yaml
 
 # USING ANSWERS
 answer = Stackoverflow::Answer.find(answer_id)
@@ -31,7 +31,8 @@ question = Stackoverflow::Question.find(question_id)
 # puts question.answers.to_yaml
 
 # USING TAGS
-puts Stackoverflow::Tag.all.to_yaml
+# puts Stackoverflow::Tag.all.to_yaml
+
 # ##########################################
 # #   QUESTIONS METHODS
 # ##########################################

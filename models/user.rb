@@ -13,11 +13,7 @@ class Stackoverflow::User < Stackoverflow::Model
   end
   
   def self.all
-    res = so.users["users"].map do |user|
-      u = Stackoverflow::User.new 
-      user.each{ |data| u.send("#{data[0]}=", data[1])}
-      u
-    end
+    self.map(so.users["users"])
   end
   
   def questions

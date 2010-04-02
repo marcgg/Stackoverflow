@@ -4,10 +4,11 @@ class Stackoverflow::Model
   end
   
   def self.map(data)
-    res = so.tags["tags"].map do |tag|
-      t = self.new 
-      tag.each{ |data| t.send("#{data[0]}=", data[1])}
-      t
+    res = data.map do |entry_data|
+      entry = self.new 
+      entry_data.each{ |data| entry.send("#{data[0]}=", data[1])}
+      entry
     end
   end
+  
 end

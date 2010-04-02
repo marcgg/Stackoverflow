@@ -14,19 +14,11 @@ class Stackoverflow::Question < Stackoverflow::Model
   end
   
   def self.all
-    res = so.questions["questions"].map do |question|
-      q = Stackoverflow::Question.new 
-      question.each{ |data| q.send("#{data[0]}=", data[1])}
-      q
-    end
+    self.map(so.questions["questions"])
   end
   
   def self.find_by_user_id(user_id)
-    res = so.user_questions(user_id)["questions"].map do |question|
-      q = Stackoverflow::Question.new 
-      question.each{ |data| q.send("#{data[0]}=", data[1])}
-      q
-    end
+    self.map(so.user_questions(user_id)["questions"])
   end
   
   # ACCESSORS
