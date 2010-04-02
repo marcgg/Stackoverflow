@@ -220,6 +220,40 @@ class Stackoverflow
   def answer_by_id(user_id, options={})
     self.class.get("/answers/#{user_id}", options)
   end
+  ##########################################
+  #   COMMENTS METHODS
+  ##########################################
+  # GENERAL
+  # Comments created by a specific user
+  def comments_by_user(user_id, options={})
+    self.class.get("/users/#{user_id}/comments", options)
+  end
+  
+  def recent_comments_by_user(user_id, options={})
+    self.class.get("/users/#{user_id}/comments/recent", options)
+  end
+  
+  def comments_by_user_by_score(user_id, options={})
+    self.class.get("/users/#{user_id}/comments/score", options)
+  end
+
+  # Comments created by a specific user {id} directed at {toid}:
+  def comments_by_user_directed_to(from_id, to_id, options={})
+    self.class.get("/users/#{from_id}/comments/#{to_id}", options)
+  end
+  
+  def recent_comments_by_user_directed_to(from_id, to_id, options={})
+    self.class.get("/users/#{from_id}/comments/#{to_id}/recent", options)
+  end
+  
+  def comments_by_user_directed_to_by_score(from_id, to_id, options={})
+    self.class.get("/users/#{from_id}/comments/#{to_id}/score", options)
+  end
+  
+  # Single Comment Method - Topic Here
+  def comment_by_id(comment_id, options={})
+    self.class.get("/comments/#{comment_id}", options)
+  end
   
   ##########################################
   #   STATS METHODS

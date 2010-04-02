@@ -6,18 +6,24 @@ require "models/user.rb"
 require "models/question.rb"
 require "models/answer.rb"
 require "models/tag.rb"
+require "models/comment.rb"
 
 so = Stackoverflow.new("knockknock")
-user_id = 90691
-user_name = "marcgg"
-question_id = 2568604
-answer_id =2568774
 
+user_id     = 90691
+user_name   = "marcgg"
+question_id = 2568604
+answer_id   = 2568774
+from_id     = 90691
+to_id       = 97142
+comment_id  = 2000050
+comment_on_question_id = 2149091
+comment_on_answer_id = 2574992
 # USING USERS
 user = Stackoverflow::User.find(user_id)
 # puts Stackoverflow::User.find(user_id).to_yaml
 # puts Stackoverflow::User.all.to_yaml
- puts user.questions.to_yaml
+# puts user.questions.to_yaml
 
 # USING ANSWERS
 answer = Stackoverflow::Answer.find(answer_id)
@@ -32,6 +38,16 @@ question = Stackoverflow::Question.find(question_id)
 
 # USING TAGS
 # puts Stackoverflow::Tag.all.to_yaml
+
+# USING COMMENTS
+comment = Stackoverflow::Comment.find(comment_id)
+comment_on_question = Stackoverflow::Comment.find(comment_on_question_id)
+comment_on_answer = Stackoverflow::Comment.find(comment_on_answer_id)
+# puts Stackoverflow::Comment.find(comment_id).to_yaml
+# puts comment.user.to_yaml
+# puts comment.post.to_yaml
+# puts comment_on_question.post.to_yaml
+# puts comment_on_answer.post.to_yaml
 
 # ##########################################
 # #   QUESTIONS METHODS
@@ -117,6 +133,23 @@ question = Stackoverflow::Question.find(question_id)
 # # SINGLE ANSWER
 # puts so.answer_by_id(answer_id).to_yaml
 # 
+# ##########################################
+# #   COMMENTS METHODS
+# ##########################################
+# # GENERAL
+# # Comments created by a specific user
+# puts so.comments_by_user(user_id).to_yaml
+# puts so.recent_comments_by_user(user_id).to_yaml
+# puts so.comments_by_user_by_score(user_id).to_yaml
+# 
+# # Comments created by a specific user {id} directed at {toid}:
+# puts so.comments_by_user_directed_to(from_id, to_id).to_yaml
+# puts so.recent_comments_by_user_directed_to(from_id, to_id).to_yaml
+# puts so.comments_by_user_directed_to_by_score(from_id, to_id).to_yaml
+# 
+# # Single Comment Method - Topic Here
+# puts so.find(comment_id).to_yaml
+#
 # ##########################################
 # #   STATS METHODS
 # ##########################################
