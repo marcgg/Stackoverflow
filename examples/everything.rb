@@ -7,6 +7,7 @@ require "models/question.rb"
 require "models/answer.rb"
 require "models/tag.rb"
 require "models/comment.rb"
+require "models/stat.rb"
 
 so = Stackoverflow.new("knockknock")
 
@@ -19,6 +20,7 @@ to_id       = 97142
 comment_id  = 2000050
 comment_on_question_id = 2149091
 comment_on_answer_id = 2574992
+
 # USING USERS
 user = Stackoverflow::User.find(user_id)
 # puts Stackoverflow::User.find(user_id).to_yaml
@@ -48,6 +50,9 @@ comment_on_answer = Stackoverflow::Comment.find(comment_on_answer_id)
 # puts comment.post.to_yaml
 # puts comment_on_question.post.to_yaml
 # puts comment_on_answer.post.to_yaml
+
+# USING STATS
+# puts Stackoverflow::Stat.fetch.to_yaml
 
 # ##########################################
 # #   QUESTIONS METHODS
@@ -153,7 +158,7 @@ comment_on_answer = Stackoverflow::Comment.find(comment_on_answer_id)
 # ##########################################
 # #   STATS METHODS
 # ##########################################
-# puts so.stats
+# puts so.stats.to_yaml
 
 
 
