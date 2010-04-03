@@ -1,6 +1,10 @@
 class Stackoverflow::Model
+  
+  @@stackoverflow = nil
+  
   def self.so
-    so = Stackoverflow.new("knockknock")
+    @@stackoverflow ||= Stackoverflow.new("knockknock")
+    @@stackoverflow
   end
   
   def self.map(data)

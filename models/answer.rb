@@ -4,7 +4,7 @@ require "stackoverflow"
 require "models/model.rb"
 
 class Stackoverflow::Answer < Stackoverflow::Model
-  attr_accessor :last_edit_date, :question_id, :up_vote_count, :title, :down_vote_count, :creation_date, :owner_user_id, :community_owned, :answer_id, :score, :owner_display_name, :accepted, :view_count
+  attr_accessor :last_edit_date, :question_id, :body, :up_vote_count, :title, :down_vote_count, :creation_date, :owner_user_id, :community_owned, :answer_id, :score, :owner_display_name, :accepted, :view_count
   
   def self.find(id)
     a = Stackoverflow::Answer.new
@@ -17,6 +17,10 @@ class Stackoverflow::Answer < Stackoverflow::Model
   end
   
   # ACCESSORS
+  
+  def body
+    @body ||= self.class.so.answer_by_id(answer_id, :query => {:body => true})["answer"]["body"]
+  end
   
   def user
     Stackoverflow::User.find(owner_user_id)

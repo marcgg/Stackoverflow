@@ -32,6 +32,7 @@ user = Stackoverflow::User.find(user_id)
 answer = Stackoverflow::Answer.find(answer_id)
 # puts Stackoverflow::Answer.find(answer_id).to_yaml
 # puts answer.question.to_yaml
+# puts answer.body.to_yaml
 
 # USING QUESTIONS
 question = Stackoverflow::Question.find(question_id)
@@ -94,7 +95,9 @@ reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
 # puts so.question_timeline(user_id).to_yaml
 # 
 # # SINGLE QUESTION
-# puts so.question_by_id(user_id).to_yaml
+# puts so.question_by_id(question_id).to_yaml
+# puts so.question_by_id(question_id, :query => {:body => true}).to_yaml
+
 # 
 # 
 # ##########################################
@@ -106,8 +109,11 @@ reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
 # puts so.users_by_reputation
 # puts so.newest_users
 # puts so.oldest_users
-# puts so.users_by_name(user_name).to_yaml
-# 
+# puts so.users_by_name.to_yaml
+# puts so.users_by_name(:query => {:filter => user_name}).to_yaml
+# puts so.users_by_name(:query => {:pagesize => 10}).to_yaml
+# puts so.users_by_name(:query => {:pagesize => 10, :page => 3}).to_yaml
+
 # # MENTIONS
 # puts so.user_mentions(user_id).to_yaml
 
@@ -130,6 +136,9 @@ reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
 # puts so.tags_by_name
 # puts so.recent_tags
 # puts so.tags_for_user(user_id).to_yaml
+# puts so.popular_tags(:query => {:pagesize => 5}).to_yaml
+# puts so.popular_tags(:query => {:pagesize => 5, :page => 10}).to_yaml
+
 # 
 # ##########################################
 # #   ANSWERS METHODS
@@ -142,7 +151,10 @@ reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
 # puts so.answers_by_user_by_votes(user_id).to_yaml
 # 
 # # SINGLE ANSWER
+answer = so.answer_by_id(answer_id)
 # puts so.answer_by_id(answer_id).to_yaml
+# puts so.answer_by_id(answer_id, :query => {:body => true}).to_yaml
+
 # 
 # ##########################################
 # #   COMMENTS METHODS

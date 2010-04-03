@@ -63,6 +63,9 @@ class Stackoverflow
     self.class.get("/questions/unanswered/votes", options)
   end
   
+  # TODO
+  # http://api.stackoverflow.com/0.5/questions/tagged?tagged={tags} - uses tagged parameter, returns questions containing all the provided tags.
+  
   # QUESTIONS CREATED BY A SPECIFIC USER
   def user_questions(user_id, options={})
     self.class.get("/users/#{user_id}/questions", options)
