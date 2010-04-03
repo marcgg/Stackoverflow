@@ -12,6 +12,10 @@ class Stackoverflow::Answer < Stackoverflow::Model
     a
   end
   
+  def self.find_by_user_id(user_id)
+    self.map(so.answers_by_user(user_id)["answers"])
+  end
+  
   # ACCESSORS
   
   def user

@@ -20,6 +20,10 @@ class Stackoverflow::User < Stackoverflow::Model
     Stackoverflow::Question.find_by_user_id(self.user_id)
   end
   
+  def answers
+    Stackoverflow::Answer.find_by_user_id(self.user_id)
+  end
+  
   def id
     self.user_id
   end

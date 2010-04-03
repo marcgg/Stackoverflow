@@ -220,6 +220,7 @@ class Stackoverflow
   def answer_by_id(user_id, options={})
     self.class.get("/answers/#{user_id}", options)
   end
+  
   ##########################################
   #   COMMENTS METHODS
   ##########################################
