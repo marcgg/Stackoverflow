@@ -259,6 +259,13 @@ class Stackoverflow
   ##########################################
   #   STATS METHODS
   ##########################################
+  def reputation_by_user(user_id, options={})
+    self.class.get("/users/#{user_id}/reputation", options)
+  end
+
+  ##########################################
+  #   STATS METHODS
+  ##########################################
   def stats
     self.class.get("/stats")
   end

@@ -8,6 +8,7 @@ require "models/answer.rb"
 require "models/tag.rb"
 require "models/comment.rb"
 require "models/stat.rb"
+require "models/reputation.rb"
 
 so = Stackoverflow.new("knockknock")
 
@@ -50,6 +51,11 @@ comment_on_answer = Stackoverflow::Comment.find(comment_on_answer_id)
 # puts comment.post.to_yaml
 # puts comment_on_question.post.to_yaml
 # puts comment_on_answer.post.to_yaml
+
+# USING REPUTATION
+reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
+# puts Stackoverflow::Reputation.find_by_user_id(user_id).to_yaml
+# reputations.each{|r| puts r.post.to_yaml}
 
 # USING STATS
 # puts Stackoverflow::Stat.fetch.to_yaml
@@ -155,6 +161,11 @@ comment_on_answer = Stackoverflow::Comment.find(comment_on_answer_id)
 # # Single Comment Method - Topic Here
 # puts so.find(comment_id).to_yaml
 #
+##########################################
+#   REPUTATION METHODS
+##########################################
+# puts so.reputation_by_user(user_id).to_yaml
+
 # ##########################################
 # #   STATS METHODS
 # ##########################################
