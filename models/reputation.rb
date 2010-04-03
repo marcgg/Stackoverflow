@@ -20,4 +20,8 @@ class Stackoverflow::Reputation < Stackoverflow::Model
     nil
   end
   
+  def on_date=(date)
+    @on_date = ((date.class == Time)? date : Time.at(date)) 
+  end
+  
 end

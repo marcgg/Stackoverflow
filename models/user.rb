@@ -24,6 +24,10 @@ class Stackoverflow::User < Stackoverflow::Model
     Stackoverflow::Answer.find_by_user_id(self.user_id)
   end
   
+  def creation_date=(date)
+    @creation_date = ((date.class == Time)? date : Time.at(date)) 
+  end
+  
   def id
     self.user_id
   end

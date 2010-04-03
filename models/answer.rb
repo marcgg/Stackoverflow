@@ -34,6 +34,10 @@ class Stackoverflow::Answer < Stackoverflow::Model
     Stackoverflow::Question.find(question_id)
   end
   
+  def creation_date=(date)
+    @creation_date = ((date.class == Time)? date : Time.at(date)) 
+  end
+  
   # ALIASES
   def id
     answer_id

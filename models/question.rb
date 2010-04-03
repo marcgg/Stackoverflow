@@ -26,6 +26,18 @@ class Stackoverflow::Question < Stackoverflow::Model
     Stackoverflow::User.find(owner_user_id)
   end
   
+  def last_activity_date=(date)
+    @last_activity_date = ((date.class == Time)? date : Time.at(date)) 
+  end
+  
+  def last_edit_date=(date)
+    @last_edit_date = ((date.class == Time)? date : Time.at(date)) 
+  end
+  
+  def creation_date=(date)
+    @creation_date = ((date.class == Time)? date : Time.at(date)) 
+  end
+  
   # ALIASES
   def id
     question_id

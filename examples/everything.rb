@@ -33,6 +33,9 @@ answer = Stackoverflow::Answer.find(answer_id)
 # puts Stackoverflow::Answer.find(answer_id).to_yaml
 # puts answer.question.to_yaml
 # puts answer.body.to_yaml
+# puts answer.creation_date
+# answer.creation_date = Time.now
+# puts answer.creation_date
 
 # USING QUESTIONS
 question = Stackoverflow::Question.find(question_id)
