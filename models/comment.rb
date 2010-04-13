@@ -8,7 +8,7 @@ class Stackoverflow::Comment < Stackoverflow::Model
   
   def self.find(id)
     c = Stackoverflow::Comment.new
-    so.comment_by_id(id)["comment"].each{ |data| c.send("#{data[0]}=", data[1])}
+    so.comment_by_id(id)["comments"][0].each{ |data| c.send("#{data[0]}=", data[1])}
     c
   end
 

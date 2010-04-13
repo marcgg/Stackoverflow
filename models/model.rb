@@ -3,7 +3,7 @@ class Stackoverflow::Model
   @@stackoverflow = nil
   
   def self.so
-    @@stackoverflow ||= Stackoverflow.new("knockknock")
+    @@stackoverflow ||= Stackoverflow.new("speakfriendandenter")
     @@stackoverflow
   end
   

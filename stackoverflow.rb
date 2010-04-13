@@ -7,7 +7,7 @@ require "httparty"
 
 class Stackoverflow  
   include HTTParty
-  base_uri "http://api.stackoverflow.com/0.5/"
+  base_uri "http://api.stackoverflow.com/0.6/"
   default_params :output => "json"
   format :json
 
@@ -24,31 +24,38 @@ class Stackoverflow
   end
 
   def active_questions(options={})
-    self.class.get("/questions/active", options)
+    options.merge(:sort => "active")
+    self.class.get("/questions", options)
   end
   
   def newest_questions(options={})
-    self.class.get("/questions/newest", options)
+    options.merge(:sort => "newest")
+    self.class.get("/questions", options)
   end
   
   def featured_questions(options={})
-    self.class.get("/questions/featured", options)
+    options.merge(:sort => "featured")
+    self.class.get("/questions", options)
   end
   
   def hot_questions(options={})
-    self.class.get("/questions/hot", options)
+    options.merge(:sort => "hot")
+    self.class.get("/questions", options)
   end
   
   def weekly_hot_questions(options={})
-    self.class.get("/questions/week", options)
+    options.merge(:sort => "week")
+    self.class.get("/questions", options)
   end
 
   def monthly_hot_questions(options={})
-    self.class.get("/questions/month", options)
+    options.merge(:sort => "month")
+    self.class.get("/questions", options)
   end
   
   def highest_voted_questions(options={})
-    self.class.get("/questions/votes", options)
+    options.merge(:sort => "votes")
+    self.class.get("/questions", options)
   end
   
   def unanswered_questions(options={})
@@ -56,11 +63,13 @@ class Stackoverflow
   end
   
   def newest_unanswered_questions(options={})
-    self.class.get("/questions/unanswered/newest", options)
+    options.merge(:sort => "newest")
+    self.class.get("/questions/unanswered", options)
   end
   
   def unanswered_questions_by_votes(options={})
-    self.class.get("/questions/unanswered/votes", options)
+    options.merge(:sort => "votes")
+    self.class.get("/questions/unanswered", options)
   end
   
   # TODO
@@ -72,19 +81,23 @@ class Stackoverflow
   end
   
   def user_recent_questions(user_id, options={})
-    self.class.get("/users/#{user_id}/questions/recent", options)
+    options.merge(:sort => "recent")
+    self.class.get("/users/#{user_id}/questions", options)
   end
   
   def user_questions_by_views(user_id, options={})
-    self.class.get("/users/#{user_id}/questions/views", options)
+    options.merge(:sort => "views")
+    self.class.get("/users/#{user_id}/questions", options)
   end
   
   def user_newest_questions(user_id, options={})
-    self.class.get("/users/#{user_id}/questions/newest", options)
+    options.merge(:sort => "newest")
+    self.class.get("/users/#{user_id}/questions", options)
   end
   
   def user_questions_by_votes(user_id, options={})
-    self.class.get("/users/#{user_id}/questions/votes", options)
+    options.merge(:sort => "votes")
+    self.class.get("/users/#{user_id}/questions", options)
   end
   
   # QUESTIONS MARKED AS FAVORITE BY A SPECIFIC USER
@@ -93,19 +106,18 @@ class Stackoverflow
   end
   
   def user_recent_favorites(user_id, options={})
-    self.class.get("/users/#{user_id}/favorites/recent", options)
+    options.merge(:sort => "recent")
+    self.class.get("/users/#{user_id}/favorites", options)
   end
   
   def user_favorites_by_views(user_id, options={})
-    self.class.get("/users/#{user_id}/favorites/views", options)
+    options.merge(:sort => "views")
+    self.class.get("/users/#{user_id}/favorites", options)
   end
   
   def user_newest_favorites(user_id, options={})
-    self.class.get("/users/#{user_id}/favorites/newest", options)
-  end
-  
-  def user_ordered_favorites(user_id, options={})
-    self.class.get("/users/#{user_id}/favorites/added", options)
+    options.merge(:sort => "newest")
+    self.class.get("/users/#{user_id}/favorites", options)
   end
   
   # QUESTION TIMELINE
@@ -131,19 +143,18 @@ class Stackoverflow
   end
 
   def users_by_reputation(options={})
-    self.class.get("/users/reputation", options)
+    options.merge(:sort => "reputation")
+    self.class.get("/users", options)
   end
 
   def newest_users(options={})
-    self.class.get("/users/newest", options)
-  end
-
-  def oldest_users(options={})
-    self.class.get("/users/oldest", options)
+    options.merge(:sort => "creation")
+    self.class.get("/users", options)
   end
 
   def users_by_name(options={})
-    self.class.get("/users/name", options)
+    options.merge(:sort => "name")
+    self.class.get("/users", options)
   end
 
   # MENTIONS
@@ -180,15 +191,18 @@ class Stackoverflow
   end
   
   def popular_tags(options={})
-    self.class.get("/tags/popular", options)
+    options.merge(:sort => "popular")
+    self.class.get("/tags", options)
   end
 
   def tags_by_name(options={})
-    self.class.get("/tags/name", options)
+    options.merge(:sort => "name")
+    self.class.get("/tags", options)
   end
 
   def recent_tags(options={})
-    self.class.get("/tags/recent", options)
+    options.merge(:sort => "activity")
+    self.class.get("/tags", options)
   end
   
   def tags_for_user(user_id, options={})
@@ -204,19 +218,23 @@ class Stackoverflow
   end
   
   def recent_answers_by_user(user_id, options={})
-    self.class.get("/users/#{user_id}/answers/recent", options)
+    options.merge(:sort => "creation")
+    self.class.get("/users/#{user_id}/answers", options)
   end
 
   def answers_by_user_by_views(user_id, options={})
-    self.class.get("/users/#{user_id}/answers/views", options)
+    options.merge(:sort => "views")
+    self.class.get("/users/#{user_id}/answers", options)
   end
   
   def newest_answers_by_user(user_id, options={})
-    self.class.get("/users/#{user_id}/answers/newest", options)
+    options.merge(:sort => "creation")
+    self.class.get("/users/#{user_id}/answers", options)
   end
   
   def answers_by_user_by_votes(user_id, options={})
-    self.class.get("/users/#{user_id}/answers/votes", options)
+    options.merge(:sort => "votes")
+    self.class.get("/users/#{user_id}/answers", options)
   end
   
   # SINGLE ANSWER
@@ -234,11 +252,13 @@ class Stackoverflow
   end
   
   def recent_comments_by_user(user_id, options={})
-    self.class.get("/users/#{user_id}/comments/recent", options)
+    options.merge(:sort => "creation")
+    self.class.get("/users/#{user_id}/comments", options)
   end
   
   def comments_by_user_by_score(user_id, options={})
-    self.class.get("/users/#{user_id}/comments/score", options)
+    options.merge(:sort => "votes")
+    self.class.get("/users/#{user_id}/comments", options)
   end
 
   # Comments created by a specific user {id} directed at {toid}:
@@ -247,11 +267,13 @@ class Stackoverflow
   end
   
   def recent_comments_by_user_directed_to(from_id, to_id, options={})
-    self.class.get("/users/#{from_id}/comments/#{to_id}/recent", options)
+    options.merge(:sort => "creation")
+    self.class.get("/users/#{from_id}/comments/#{to_id}", options)
   end
   
   def comments_by_user_directed_to_by_score(from_id, to_id, options={})
-    self.class.get("/users/#{from_id}/comments/#{to_id}/score", options)
+    options.merge(:sort => "votes")
+    self.class.get("/users/#{from_id}/comments/#{to_id}", options)
   end
   
   # Single Comment Method - Topic Here
@@ -262,7 +284,7 @@ class Stackoverflow
   ##########################################
   #   STATS METHODS
   ##########################################
-  def reputation_by_user(user_id, options={})
+  def reputation_for_user(user_id, options={})
     self.class.get("/users/#{user_id}/reputation", options)
   end
 

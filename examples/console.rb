@@ -9,7 +9,7 @@ require "models/tag.rb"
 require "models/comment.rb"
 require "models/stat.rb"
 
-so = Stackoverflow.new("knockknock")
+so = Stackoverflow.new("speakfriendandenter")
 
 user_id     = 90691
 user_name   = "marcgg"

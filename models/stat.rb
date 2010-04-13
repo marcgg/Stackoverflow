@@ -8,7 +8,7 @@ class Stackoverflow::Stat < Stackoverflow::Model
   
   def self.fetch
     s = Stackoverflow::Stat.new
-    so.stats["stats"].each{ |data| s.send("#{data[0]}=", data[1])}
+    so.stats["statistics"][0].each{ |data| s.send("#{data[0]}=", data[1])}
     s  
   end
 end

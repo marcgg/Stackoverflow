@@ -8,7 +8,7 @@ class Stackoverflow::User < Stackoverflow::Model
   
   def self.find(id)
     u = Stackoverflow::User.new
-    so.user_by_id(id)["user"].each{ |data| u.send("#{data[0]}=", data[1])}
+    so.user_by_id(id)["users"][0].each{ |data| u.send("#{data[0]}=", data[1])}
     u
   end
   

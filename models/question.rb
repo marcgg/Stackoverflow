@@ -9,7 +9,7 @@ class Stackoverflow::Question < Stackoverflow::Model
 
   def self.find(id)
     q = Stackoverflow::Question.new
-    so.question_by_id(id)["question"].each{ |data| q.send("#{data[0]}=", data[1])}
+    so.question_by_id(id)["questions"][0].each{ |data| q.send("#{data[0]}=", data[1])}
     q
   end
   
