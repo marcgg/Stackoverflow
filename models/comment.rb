@@ -6,12 +6,7 @@ require "models/model.rb"
 class Stackoverflow::Comment < Stackoverflow::Model
   attr_accessor :body, :creation_date, :post_id, :post_type, :owner_user_id, :score, :owner_display_name, :comment_id
   alias_method :id, :comment_id
-  
-  def self.find(id)
-    c = Stackoverflow::Comment.new
-    so.comment_by_id(id)["comments"][0].each{ |data| c.send("#{data[0]}=", data[1])}
-    c
-  end
+  findable!
 
   # ACCESSORS
   def user

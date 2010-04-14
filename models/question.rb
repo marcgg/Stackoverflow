@@ -8,12 +8,7 @@ class Stackoverflow::Question < Stackoverflow::Model
   attr_accessor :bounty_closes_date, :bounty_amount, :answers, :question_id, :last_edit_date, :up_vote_count, :last_activity_date, :title, :down_vote_count, :creation_date, :favorite_count, :answer_count, :tags, :owner_user_id, :community_owned, :score, :accepted_answer_id, :owner_display_name, :view_count
   alias_method :id, :question_id
   alias_method :user_id, :owner_user_id
-
-  def self.find(id)
-    q = Stackoverflow::Question.new
-    so.question_by_id(id)["questions"][0].each{ |data| q.send("#{data[0]}=", data[1])}
-    q
-  end
+  findable!
   
   def self.all
     self.map(so.questions["questions"])
