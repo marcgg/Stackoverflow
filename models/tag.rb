@@ -10,8 +10,4 @@ class Stackoverflow::Tag < Stackoverflow::Model
     self.map(so.tags["tags"])
   end
 
-  
-  def id
-    self.user_id
-  end
 end

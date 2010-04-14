@@ -5,7 +5,9 @@ require "models/model.rb"
 require "models/user.rb"
 
 class Stackoverflow::Question < Stackoverflow::Model
-  attr_accessor :bounty_closes_date, :answers, :question_id, :last_edit_date, :up_vote_count, :last_activity_date, :title, :down_vote_count, :creation_date, :favorite_count, :answer_count, :tags, :owner_user_id, :community_owned, :score, :accepted_answer_id, :owner_display_name, :view_count
+  attr_accessor :bounty_closes_date, :bounty_amount, :answers, :question_id, :last_edit_date, :up_vote_count, :last_activity_date, :title, :down_vote_count, :creation_date, :favorite_count, :answer_count, :tags, :owner_user_id, :community_owned, :score, :accepted_answer_id, :owner_display_name, :view_count
+  alias_method :id, :question_id
+  alias_method :user_id, :owner_user_id
 
   def self.find(id)
     q = Stackoverflow::Question.new
@@ -36,15 +38,6 @@ class Stackoverflow::Question < Stackoverflow::Model
   
   def creation_date=(date)
     @creation_date = ((date.class == Time)? date : Time.at(date)) 
-  end
-  
-  # ALIASES
-  def id
-    question_id
-  end
-  
-  def user_id
-    owner_user_id
   end
   
   private

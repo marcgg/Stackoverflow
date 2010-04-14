@@ -4,7 +4,6 @@ class Stackoverflow::Model
   
   def self.so
     @@stackoverflow ||= Stackoverflow.new("speakfriendandenter")
-    @@stackoverflow
   end
   
   def self.map(data)

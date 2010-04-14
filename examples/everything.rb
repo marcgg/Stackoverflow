@@ -27,6 +27,7 @@ user = Stackoverflow::User.find(user_id)
 puts Stackoverflow::User.find(user_id).to_yaml
 puts Stackoverflow::User.all.to_yaml
 puts user.questions.to_yaml
+puts user.id
 
 puts "# USING ANSWERS"
 answer = Stackoverflow::Answer.find(answer_id)
@@ -36,12 +37,14 @@ puts answer.body.to_yaml
 puts answer.creation_date
 answer.creation_date = Time.now
 puts answer.creation_date
+puts answer.id
 
 puts "# USING QUESTIONS"
 question = Stackoverflow::Question.find(question_id)
 puts Stackoverflow::Question.find(question_id).to_yaml
 puts Stackoverflow::Question.all.to_yaml
 puts question.answers.to_yaml
+puts question.id
 
 puts "# USING TAGS"
 puts Stackoverflow::Tag.all.to_yaml
@@ -55,6 +58,7 @@ puts comment.user.to_yaml
 puts comment.post.to_yaml
 puts comment_on_question.post.to_yaml
 puts comment_on_answer.post.to_yaml
+puts comment.id
 
 puts "# USING REPUTATION"
 reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
@@ -62,7 +66,11 @@ puts Stackoverflow::Reputation.find_by_user_id(user_id).to_yaml
 reputations.each{|r| puts r.post.to_yaml}
 
 puts "# USING STATS"
- puts Stackoverflow::Stat.fetch.to_yaml
+puts Stackoverflow::Stat.fetch.to_yaml
+
+
+puts "==========================================================="
+
 
 puts "##########################################"
 puts "#   QUESTIONS METHODS"
@@ -99,8 +107,6 @@ puts so.question_timeline(user_id).to_yaml
 puts "# SINGLE QUESTION"
 puts so.question_by_id(question_id).to_yaml
 puts so.question_by_id(question_id, :query => {:body => true}).to_yaml
-
-
 
 puts "##########################################"
 puts "#   USERS METHODS"

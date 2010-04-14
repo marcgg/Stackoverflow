@@ -5,6 +5,7 @@ require "models/model.rb"
 
 class Stackoverflow::Comment < Stackoverflow::Model
   attr_accessor :body, :creation_date, :post_id, :post_type, :owner_user_id, :score, :owner_display_name, :comment_id
+  alias_method :id, :comment_id
   
   def self.find(id)
     c = Stackoverflow::Comment.new
@@ -30,8 +31,4 @@ class Stackoverflow::Comment < Stackoverflow::Model
     @creation_date = ((date.class == Time)? date : Time.at(date)) 
   end
   
-  # ALIASES
-  def id
-    self.comment_id
-  end
 end

@@ -5,6 +5,7 @@ require "models/model.rb"
 
 class Stackoverflow::User < Stackoverflow::Model
   attr_accessor :display_name, :up_vote_count, :about_me, :location, :accept_rate, :down_vote_count, :creation_date, :question_count, :website_url, :answer_count, :reputation, :user_type, :last_access_date, :email_hash, :user_id, :display_name, :age, :view_count
+  alias_method :id, :user_id
   
   def self.find(id)
     u = Stackoverflow::User.new
@@ -27,8 +28,5 @@ class Stackoverflow::User < Stackoverflow::Model
   def creation_date=(date)
     @creation_date = ((date.class == Time)? date : Time.at(date)) 
   end
-  
-  def id
-    self.user_id
-  end
+
 end

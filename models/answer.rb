@@ -5,6 +5,7 @@ require "models/model.rb"
 
 class Stackoverflow::Answer < Stackoverflow::Model
   attr_accessor :last_edit_date, :question_id, :body, :up_vote_count, :title, :down_vote_count, :creation_date, :owner_user_id, :community_owned, :answer_id, :score, :owner_display_name, :accepted, :view_count, :last_activity_date
+  alias_method :id, :answer_id
   
   def self.find(id)
     a = Stackoverflow::Answer.new
@@ -40,11 +41,6 @@ class Stackoverflow::Answer < Stackoverflow::Model
   
   def last_activity_date=(date)
     @last_activity_date = ((date.class == Time)? date : Time.at(date)) 
-  end
-  
-  # ALIASES
-  def id
-    answer_id
   end
 
 end
