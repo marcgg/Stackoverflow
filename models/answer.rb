@@ -10,6 +10,8 @@ class Stackoverflow::Answer < Stackoverflow::Model
   findable!
   belongs_to :user
   belongs_to :question
+  timestamp :creation_date
+  timestamp :last_activity_date
 
   def self.find_by_user_id(user_id)
     self.map(so.answers_by_user(user_id)["answers"])
@@ -19,14 +21,6 @@ class Stackoverflow::Answer < Stackoverflow::Model
   
   def body
     @body ||= self.class.so.answer_by_id(answer_id, :query => {:body => true})["answers"][0]["body"]
-  end
-  
-  def creation_date=(date)
-    @creation_date = ((date.class == Time)? date : Time.at(date)) 
-  end
-  
-  def last_activity_date=(date)
-    @last_activity_date = ((date.class == Time)? date : Time.at(date)) 
   end
 
 end

@@ -18,7 +18,7 @@ question_id = 2568604
 answer_id   = 2568774
 from_id     = 90691
 to_id       = 97142
-comment_id  = 2647214
+comment_id  = 176463
 comment_on_question_id = 2149091
 comment_on_answer_id = 2574992
 
@@ -28,6 +28,7 @@ puts Stackoverflow::User.find(user_id).to_yaml
 puts Stackoverflow::User.all.to_yaml
 puts user.questions.to_yaml
 puts user.id
+puts user.creation_date
 
 puts "# USING ANSWERS"
 answer = Stackoverflow::Answer.find(answer_id)
@@ -39,6 +40,7 @@ answer.creation_date = Time.now
 puts answer.creation_date
 puts answer.id
 puts answer.user.to_yaml
+puts answer.last_activity_date
 
 puts "# USING QUESTIONS"
 question = Stackoverflow::Question.find(question_id)
@@ -47,6 +49,9 @@ puts Stackoverflow::Question.all.to_yaml
 puts question.answers.to_yaml
 puts question.user.to_yaml
 puts question.id
+puts question.creation_date
+puts question.last_activity_date
+puts question.last_edit_date
 
 puts "# USING TAGS"
 puts Stackoverflow::Tag.all.to_yaml
@@ -61,11 +66,13 @@ puts comment.post.to_yaml
 puts comment_on_question.post.to_yaml
 puts comment_on_answer.post.to_yaml
 puts comment.id
+puts comment.creation_date
 
 puts "# USING REPUTATION"
 reputations = Stackoverflow::Reputation.find_by_user_id(user_id)
 puts Stackoverflow::Reputation.find_by_user_id(user_id).to_yaml
 reputations.each{|r| puts r.post.to_yaml}
+reputations.each{|r|puts r.on_date}
 
 puts "# USING STATS"
 puts Stackoverflow::Stat.fetch.to_yaml

@@ -10,27 +10,16 @@ class Stackoverflow::Question < Stackoverflow::Model
   alias_method :user_id, :owner_user_id
   findable!
   belongs_to :user
-  
+  timestamp :last_activity_date
+  timestamp :last_edit_date
+  timestamp :creation_date
+
   def self.all
     self.map(so.questions["questions"])
   end
   
   def self.find_by_user_id(user_id)
     self.map(so.user_questions(user_id)["questions"])
-  end
-  
-  # ACCESSORS
-  
-  def last_activity_date=(date)
-    @last_activity_date = ((date.class == Time)? date : Time.at(date)) 
-  end
-  
-  def last_edit_date=(date)
-    @last_edit_date = ((date.class == Time)? date : Time.at(date)) 
-  end
-  
-  def creation_date=(date)
-    @creation_date = ((date.class == Time)? date : Time.at(date)) 
   end
   
   private

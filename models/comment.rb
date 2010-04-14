@@ -9,7 +9,8 @@ class Stackoverflow::Comment < Stackoverflow::Model
   alias_method :user_id, :owner_user_id
   findable!
   belongs_to :user
-
+  timestamp :creation_date
+  
   # ACCESSORS
   
   def post
@@ -19,10 +20,6 @@ class Stackoverflow::Comment < Stackoverflow::Model
       return Stackoverflow::Question.find(post_id)
     end
     nil
-  end
-  
-  def creation_date=(date)
-    @creation_date = ((date.class == Time)? date : Time.at(date)) 
   end
   
 end

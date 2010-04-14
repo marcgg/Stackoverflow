@@ -8,6 +8,13 @@ class Stackoverflow::Model
     @@stackoverflow ||= Stackoverflow.new("speakfriendandenter")
   end
   
+  def self.timestamp(type)
+    define_method("#{type}=") do |date|
+      new_date = ((date.class == Time)? date : Time.at(date)) 
+      self.instance_variable_set("@#{type}", new_date)
+    end
+  end
+  
   def self.findable!
     class << self
       define_method(:find) do |id|

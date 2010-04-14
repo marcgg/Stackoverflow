@@ -5,7 +5,8 @@ require "models/model.rb"
 
 class Stackoverflow::Reputation < Stackoverflow::Model
   attr_accessor :user_id, :title, :positive_rep, :post_id, :on_date, :post_type, :negative_rep
-    
+  timestamp :on_date
+  
   def self.find_by_user_id(user_id)
     @user_id = user_id
     self.map(so.reputation_for_user(user_id)["repchanges"])
@@ -19,10 +20,6 @@ class Stackoverflow::Reputation < Stackoverflow::Model
       return Stackoverflow::Question.find(post_id)
     end
     nil
-  end
-  
-  def on_date=(date)
-    @on_date = ((date.class == Time)? date : Time.at(date)) 
   end
   
 end
