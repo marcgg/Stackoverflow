@@ -9,6 +9,7 @@ class Stackoverflow::Question < Stackoverflow::Model
   alias_method :id, :question_id
   alias_method :user_id, :owner_user_id
   findable!
+  belongs_to :user
   
   def self.all
     self.map(so.questions["questions"])
@@ -19,9 +20,6 @@ class Stackoverflow::Question < Stackoverflow::Model
   end
   
   # ACCESSORS
-  def user
-    Stackoverflow::User.find(owner_user_id)
-  end
   
   def last_activity_date=(date)
     @last_activity_date = ((date.class == Time)? date : Time.at(date)) 

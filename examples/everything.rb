@@ -38,12 +38,14 @@ puts answer.creation_date
 answer.creation_date = Time.now
 puts answer.creation_date
 puts answer.id
+puts answer.user.to_yaml
 
 puts "# USING QUESTIONS"
 question = Stackoverflow::Question.find(question_id)
 puts Stackoverflow::Question.find(question_id).to_yaml
 puts Stackoverflow::Question.all.to_yaml
 puts question.answers.to_yaml
+puts question.user.to_yaml
 puts question.id
 
 puts "# USING TAGS"

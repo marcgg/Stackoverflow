@@ -4,9 +4,10 @@ require "stackoverflow"
 require "models/model.rb"
 
 class Stackoverflow::Reputation < Stackoverflow::Model
-  attr_accessor :title, :positive_rep, :post_id, :on_date, :post_type, :negative_rep
+  attr_accessor :user_id, :title, :positive_rep, :post_id, :on_date, :post_type, :negative_rep
     
   def self.find_by_user_id(user_id)
+    @user_id = user_id
     self.map(so.reputation_for_user(user_id)["repchanges"])
   end
 

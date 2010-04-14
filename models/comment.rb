@@ -6,12 +6,11 @@ require "models/model.rb"
 class Stackoverflow::Comment < Stackoverflow::Model
   attr_accessor :body, :creation_date, :post_id, :post_type, :owner_user_id, :score, :owner_display_name, :comment_id
   alias_method :id, :comment_id
+  alias_method :user_id, :owner_user_id
   findable!
+  belongs_to :user
 
   # ACCESSORS
-  def user
-    Stackoverflow::User.find(owner_user_id)
-  end
   
   def post
     if post_type == "answer"

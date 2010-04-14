@@ -18,6 +18,12 @@ class Stackoverflow::Model
     end  
   end
   
+  def self.belongs_to(model_name)
+    define_method(model_name) do
+      "Stackoverflow::#{model_name.to_s.capitalize}".constantize.find(self.send("#{model_name}_id"))
+    end
+  end
+  
   def self.map(data)
     res = data.map do |entry_data|
       entry = self.new 
